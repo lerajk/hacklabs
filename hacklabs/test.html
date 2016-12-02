@@ -31,6 +31,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 
 
 </head>
@@ -188,7 +189,8 @@
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="img/portfolio/birme/bitcoin.png" class="img-responsive" alt="">
+
+                        <img src="myimages/bitcoin.png" class="img-responsive" alt="">
                     </a>
                     <div class="portfolio-caption">
                         <h4>Blockchain</h4>
@@ -202,7 +204,7 @@
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="img/portfolio/birme/hololens.png" class="img-responsive" alt="">
+                        <img src="myimages/hololens.png" class="img-responsive" alt="">
                     </a>
                     <div class="portfolio-caption">
                         <h4>Virtual and Augmented Reality</h4>
@@ -216,11 +218,11 @@
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="img/portfolio/birme/data.png" class="img-responsive" alt="">
+                        <img src="myimages/data.png" class="img-responsive" alt="">
                     </a>
                     <div class="portfolio-caption">
                         <h4>Data Science</h4>
-                        <p class="text-muted">Big Data and Machine Learning</p>
+                        <p class="text-muted">Big Data, AI and Machine Learning</p>
                     </div>
                 </div>
 
@@ -236,22 +238,22 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Sign Up</h2>
+                    <h2 class="section-heading">join the mailing list</h2>
                     <h3 class="section-subheading text-muted"></h3>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12" >
                     <!--<form action="signup.php" method="post" name="sentMessage" id="contactForm" novalidate > -->
-                    <form action="signup.php" method="post" >
+                    <form id="contactForm" action="signup.php" method="post" >
                         <div class="row">
                             <div class="col-md-63" >
-                                <div class="form-group" >
-                                    <input type="text" class="form-control" name="name" placeholder="Your Name *" id="name" required data-validation-required-message="Please enter your name." >
+                                <div align = "center" class="form-group" >
+                                    <input type="text" class="form-control" name="name" placeholder="Your Name *" id="name" required data-validation-required-message="Please enter your name." style="width:350px";>
                                     <p class="help-block text-danger"></p>
                                 </div>
-                                <div class="form-group">
-                                    <input type="email" class="form-control" name="email" placeholder="Your Email *" id="email" required data-validation-required-message="Please enter your email address.">
+                                <div align = "center" class="form-group">
+                                    <input type="email" class="form-control" name="email" placeholder="Your Email *" id="email" required data-validation-required-message="Please enter your email address." style="width:350px";>
                                     <p class="help-block text-danger"></p>
                                 </div>
                               </div>
@@ -503,6 +505,50 @@
 
     <!-- Theme JavaScript -->
     <script src="js/agency.min.js"></script>
+
+
+
+    <!-- Mr. javscript -->
+
+
+    <script>
+         $("#contactForm").submit(function(event)
+         {
+             /* stop form from submitting normally */
+             event.preventDefault();
+
+             /* get some values from elements on the page: */
+             var $form = $( this ),
+                 $submit = $form.find( 'button[type="submit"]' ),
+                 name_value = $form.find( 'input[name="name"]' ).val(),
+                 email_value = $form.find( 'input[name="email"]' ).val(),
+                 //message_value = $form.find( 'textarea[name="message"]' ).val(),
+                 url = $form.attr('action');
+
+             /* Send the data using post */
+             var posting = $.post( url, {
+                               name: name_value,
+                               email: email_value
+                               //message: message_value
+                           });
+
+             posting.done(function( data )
+             {
+
+                /*alert('abc');
+                return false; */
+                 /* Put the results in a div */
+                  $( "#contactResponse" ).html(data);
+
+                  /* Change the button text. */
+                  $submit.text('Sent, Thank you');
+
+                  /* Disable the button. */
+                 $submit.attr("disabled", true);
+             });
+        });
+    </script>
+
 
 
 
